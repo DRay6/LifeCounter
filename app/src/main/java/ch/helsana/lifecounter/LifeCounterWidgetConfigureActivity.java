@@ -14,6 +14,8 @@ import ch.helsana.lifecounter.databinding.LifeCounterWidgetConfigureBinding;
 /**
  * The configuration screen for the {@link LifeCounterWidget LifeCounterWidget} AppWidget.
  */
+
+//Provider
 public class LifeCounterWidgetConfigureActivity extends Activity {
 
     private static final String PREFS_NAME = "ch.helsana.lifecounter.LifeCounterWidget";

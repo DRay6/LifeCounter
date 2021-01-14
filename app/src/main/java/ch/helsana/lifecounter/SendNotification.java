@@ -30,7 +30,7 @@ public class SendNotification extends Service {
 
 
 
-    @Override
+/*    @Override
     protected void onCreate() {
         super.onCreate();
         setContentView(R.layout.activity_main);
@@ -51,5 +51,5 @@ public class SendNotification extends Service {
                 .setContentText("It's snowing!")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         notificationManager.notify(0, builder.build());
-    }
+    }*/
 }
