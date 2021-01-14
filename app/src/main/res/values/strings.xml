@@ -3,4 +3,10 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="configure">Configure</string>
     <string name="add_widget">Add widget</string>
+    <string name="btPlus_Text_1">+100</string>
+    <string name="btPlus_Text_2">+500</string>
+    <string name="btPlus_Text_3">+1000</string>
+    <string name="btMin_Text_1">-100</string>
+    <string name="btMin_Text_2">-500</string>
+    <string name="btMin_Text_3">-1000</string>
 </resources>
