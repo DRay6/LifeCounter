@@ -10,4 +10,7 @@
     <string name="btMin_Text_2">-500</string>
     <string name="btMin_Text_3">-1000</string>
     <string name="btReset_Text">Reset</string>
+    <string name="channel_name">YuGiOh Lifecounter</string>
+    <string name="channel_description">All notifications from YuGiOh LifeCounter</string>
+    <string name="channel_id">M_CH_ID</string>
 </resources>
