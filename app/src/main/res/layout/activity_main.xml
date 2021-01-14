@@ -26,29 +26,28 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/btPlus100"
+                    android:id="@+id/btMin100"
                     style="@style/Widget.AppCompat.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/btPlus_Text_1" />
+                    android:text="@string/btMin_Text_1" />
 
                 <Button
-                    android:id="@+id/btPlus500"
+                    android:id="@+id/btMin500"
                     style="@style/Widget.AppCompat.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/btPlus_Text_2" />
+                    android:text="@string/btMin_Text_2" />
 
                 <Button
-                    android:id="@+id/btPlus1000"
+                    android:id="@+id/btMin1000"
                     style="@style/Widget.AppCompat.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/btPlus_Text_3" />
-
+                    android:text="@string/btMin_Text_3" />
             </LinearLayout>
 
             <LinearLayout
@@ -83,28 +82,29 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/btMin100"
+                    android:id="@+id/btPlus100"
                     style="@style/Widget.AppCompat.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/btMin_Text_1" />
+                    android:text="@string/btPlus_Text_1" />
 
                 <Button
-                    android:id="@+id/btMin500"
+                    android:id="@+id/btPlus500"
                     style="@style/Widget.AppCompat.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/btMin_Text_2" />
+                    android:text="@string/btPlus_Text_2" />
 
                 <Button
-                    android:id="@+id/btMin1000"
+                    android:id="@+id/btPlus1000"
                     style="@style/Widget.AppCompat.Button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/btMin_Text_3" />
+                    android:text="@string/btPlus_Text_3" />
+
             </LinearLayout>
 
         </LinearLayout>
