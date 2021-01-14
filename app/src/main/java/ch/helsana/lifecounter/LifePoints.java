@@ -11,7 +11,7 @@ public class LifePoints {
     }
 
     public static LifePoints getSingletonInstance(){
-        if (instance != null){
+        if (instance == null){
             instance = new LifePoints();
         }
 
