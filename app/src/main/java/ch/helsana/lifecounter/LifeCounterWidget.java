@@ -23,7 +23,6 @@ public class LifeCounterWidget extends AppWidgetProvider {
     private  static final String OnClickMinus1000 = "onClickMinus1000";
 
 
-
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
         //CharSequence widgetText = LifeCounterWidgetConfigureActivity.loadTitlePref(context, appWidgetId);
@@ -41,7 +40,6 @@ public class LifeCounterWidget extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
         for (int appWidgetId : appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId);
 
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.life_counter_widget);
             views.setOnClickPendingIntent(R.id.btPlus100,
@@ -56,6 +54,8 @@ public class LifeCounterWidget extends AppWidgetProvider {
                     getPendingSelfIntent(context, OnClickMinus500,appWidgetId));
             views.setOnClickPendingIntent(R.id.btMin1000,
                     getPendingSelfIntent(context, OnClickMinus1000,appWidgetId));
+
+            updateAppWidget(context, appWidgetManager, appWidgetId);
 
         }
     }
@@ -72,8 +72,6 @@ public class LifeCounterWidget extends AppWidgetProvider {
     public void onEnabled(Context context) {
         // Enter relevant functionality for when the first widget is created
         lifePoints = LifePoints.getSingletonInstance();
-
-
     }
 
     @Override
@@ -111,17 +109,14 @@ public class LifeCounterWidget extends AppWidgetProvider {
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.life_counter_widget);
 
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+
         int lp = lifePoints.getLp();
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 
         views.setTextViewText(R.id.lifepoints_text, String.valueOf(lp) );
         appWidgetManager.updateAppWidget(widgetId, views);
 
-
-        return PendingIntent.getBroadcast(context, 0, intent, 0);
+        return pendingIntent;
     }
-
-
-
-
 }
