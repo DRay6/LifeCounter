@@ -26,6 +26,10 @@ public class LifePoints {
         if (i % 100 == 0){
             lp = lp + i;
         }
+
+        if (lp < 0){
+            lp = 0;
+        }
     }
 
     public int getLp() {
