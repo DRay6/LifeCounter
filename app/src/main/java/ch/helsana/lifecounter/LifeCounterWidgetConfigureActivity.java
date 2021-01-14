@@ -20,6 +20,7 @@ public class LifeCounterWidgetConfigureActivity extends Activity {
     private static final String PREF_PREFIX_KEY = "appwidget_";
     int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     EditText mAppWidgetText;
+
     View.OnClickListener mOnClickListener = new View.OnClickListener() {
         public void onClick(View v) {
             final Context context = LifeCounterWidgetConfigureActivity.this;
@@ -81,7 +82,7 @@ public class LifeCounterWidgetConfigureActivity extends Activity {
         binding = LifeCounterWidgetConfigureBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        mAppWidgetText = binding.appwidgetText;
+        mAppWidgetText = binding.lifepointsText;
         binding.addButton.setOnClickListener(mOnClickListener);
 
         // Find the widget id from the intent.

@@ -3,7 +3,9 @@ package ch.helsana.lifecounter;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.widget.Button;
 import android.widget.RemoteViews;
+
 
 /**
  * Implementation of App Widget functionality.
@@ -11,13 +13,17 @@ import android.widget.RemoteViews;
  */
 public class LifeCounterWidget extends AppWidgetProvider {
 
+    private LifePoints lifePoints;
+
+
+
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
         CharSequence widgetText = LifeCounterWidgetConfigureActivity.loadTitlePref(context, appWidgetId);
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.life_counter_widget);
-        views.setTextViewText(R.id.appwidget_text, widgetText);
+        views.setTextViewText(R.id.lifepoints_text, widgetText);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -42,6 +48,9 @@ public class LifeCounterWidget extends AppWidgetProvider {
     @Override
     public void onEnabled(Context context) {
         // Enter relevant functionality for when the first widget is created
+        lifePoints = LifePoints.getSingletonInstance();
+
+
     }
 
     @Override
