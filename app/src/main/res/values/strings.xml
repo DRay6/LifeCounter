@@ -9,4 +9,5 @@
     <string name="btMin_Text_1">-100</string>
     <string name="btMin_Text_2">-500</string>
     <string name="btMin_Text_3">-1000</string>
+    <string name="btReset_Text">Reset</string>
 </resources>
