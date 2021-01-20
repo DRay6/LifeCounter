@@ -30,7 +30,7 @@ public class SendNotification extends IntentService {
         CharSequence name = getString(R.string.channel_name);
         String description = getString(R.string.channel_description);
         int importance = NotificationManager.IMPORTANCE_DEFAULT;
-        NotificationChannel channel = new NotificationChannel(R.string.channel_id, name, importance);
+        NotificationChannel channel = new NotificationChannel(getString(R.string.channel_id), name, importance);
         channel.setDescription(description);
         // Register the channel with the system; you can't change the importance
         // or other notification behaviors after this
@@ -40,7 +40,7 @@ public class SendNotification extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
         builder.setContentTitle("YuGiOh LifeCounter");
         builder.setContentText("Check the newest banlist");
         builder.setSmallIcon(R.drawable.ic_launcher_foreground);
