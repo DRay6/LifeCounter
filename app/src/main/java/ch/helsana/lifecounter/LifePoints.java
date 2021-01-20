@@ -1,5 +1,7 @@
 package ch.helsana.lifecounter;
 
+import java.sql.SQLOutput;
+
 public class LifePoints {
 
     private static LifePoints instance;
@@ -11,6 +13,7 @@ public class LifePoints {
     }
 
     public static LifePoints getSingletonInstance(){
+        System.out.println("SINGLETON: RECEIVED INSTANCE");
         if (instance == null){
             instance = new LifePoints();
         }
@@ -23,6 +26,8 @@ public class LifePoints {
     }
 
     public void modifyLifePoints(int i){
+        System.out.println("SINGLETON: MODIFY POINTS");
+        System.out.println(this.lp);
         if (i % 100 == 0){
             lp = lp + i;
         }
@@ -30,6 +35,7 @@ public class LifePoints {
         if (lp < 0){
             lp = 0;
         }
+        System.out.println(this.lp);
     }
 
     public int getLp() {
