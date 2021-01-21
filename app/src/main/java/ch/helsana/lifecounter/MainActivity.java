@@ -2,10 +2,16 @@ package ch.helsana.lifecounter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import ch.helsana.lifecounter.Model.LifePoints;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -76,6 +82,18 @@ public class MainActivity extends AppCompatActivity {
             lifePoints.resetLifePoints();
             updateLifePoints();
         });
+
+        Context context = MainActivity.this;
+
+        Intent notificationIntent = new Intent(context, SendNotification.class);
+        PendingIntent contentIntent = PendingIntent.getService(context, 0, notificationIntent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+        System.out.println("LOG");
+
+        AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        am.cancel(contentIntent);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()
+                + AlarmManager.INTERVAL_FIFTEEN_MINUTES, AlarmManager.INTERVAL_FIFTEEN_MINUTES, contentIntent);
 
 
     }
