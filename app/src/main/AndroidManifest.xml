@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ch.helsana.lifecounter">
-
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,6 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LifeCounter">
+
 
         <service
             android:name=".SendNotification"
@@ -23,6 +25,12 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/life_counter_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name=".NotificationSender"
+            android:enabled="true"
+            android:exported="false" >
         </receiver>
 
         <activity android:name=".LifeCounterWidgetConfigureActivity">
