@@ -27,6 +27,12 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        updateLifePoints();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -85,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
         Context context = MainActivity.this;
 
-        Intent notificationIntent = new Intent(context, SendNotification.class);
+        Intent notificationIntent = new Intent(context, NotificationSender.class);
         PendingIntent contentIntent = PendingIntent.getService(context, 0, notificationIntent,
                 PendingIntent.FLAG_CANCEL_CURRENT);
         System.out.println("LOG");
