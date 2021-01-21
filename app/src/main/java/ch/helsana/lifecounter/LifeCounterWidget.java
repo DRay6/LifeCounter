@@ -3,6 +3,7 @@ package ch.helsana.lifecounter;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
@@ -31,15 +32,25 @@ public class LifeCounterWidget extends AppWidgetProvider {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.life_counter_widget);
         views.setTextViewText(R.id.lifepoints_text, String.valueOf(LifePoints.getSingletonInstance().getLp()));
 
+
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
+
     }
 
+    public void onUpdate(Context context) {
+
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        ComponentName thisAppWidgetComponentName = new ComponentName(context.getPackageName(), getClass().getName());
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(thisAppWidgetComponentName);
+        onUpdate(context, appWidgetManager, appWidgetIds);
+    }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
         lifePoints = LifePoints.getSingletonInstance();
+        System.out.println("LOG");
 
         for (int appWidgetId : appWidgetIds) {
 
@@ -58,8 +69,11 @@ public class LifeCounterWidget extends AppWidgetProvider {
                     getPendingSelfIntent(context, OnClickMinus1000, appWidgetId));
 
             views.setTextViewText(R.id.lifepoints_text, String.valueOf(lifePoints.getLp()));
+            views.setProgressBar(R.id.progressBar,8000,lifePoints.getLp(),false);
+
             appWidgetManager.updateAppWidget(appWidgetId, views);
             //updateAppWidget(context, appWidgetManager, appWidgetId);
+
 
         }
     }
@@ -112,6 +126,8 @@ public class LifeCounterWidget extends AppWidgetProvider {
                 break;
         }
 
+        onUpdate(context);
+
 
     }
 
@@ -121,13 +137,9 @@ public class LifeCounterWidget extends AppWidgetProvider {
         Intent intent = new Intent(context, getClass());
         intent.setAction(action);
 
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.life_counter_widget);
-        lifePoints.modifyLifePoints(100);
-        views.setTextViewText(R.id.lifepoints_text, String.valueOf(lifePoints.getLp()));
-
-
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
 
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.life_counter_widget);
         int lp = lifePoints.getLp();
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 

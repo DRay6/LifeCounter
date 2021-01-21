@@ -105,7 +105,9 @@
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:max="8000"
+            android:progress="8000" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -34,15 +34,17 @@ public class LifeCounterWidgetConfigureActivity extends Activity {
             // It is the responsibility of the configuration activity to update the app widget
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             LifeCounterWidget.updateAppWidget(context, appWidgetManager, mAppWidgetId);
+            LifeCounterWidget lifeCounterWidget = new LifeCounterWidget();
+            lifeCounterWidget.onUpdate(context);
 
             // Make sure we pass back the original appWidgetId
             Intent resultValue = new Intent();
             resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, mAppWidgetId);
             setResult(RESULT_OK, resultValue);
+
             finish();
         }
     };
-    private LifeCounterWidgetConfigureBinding binding;
 
     public LifeCounterWidgetConfigureActivity() {
         super();
@@ -81,7 +83,7 @@ public class LifeCounterWidgetConfigureActivity extends Activity {
         // out of the widget placement if the user presses the back button.
         setResult(RESULT_CANCELED);
 
-        binding = LifeCounterWidgetConfigureBinding.inflate(getLayoutInflater());
+        ch.helsana.lifecounter.databinding.LifeCounterWidgetConfigureBinding binding = LifeCounterWidgetConfigureBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         mAppWidgetText = binding.lifepointsText;
