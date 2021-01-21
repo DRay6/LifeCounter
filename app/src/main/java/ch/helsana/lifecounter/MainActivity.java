@@ -96,6 +96,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        LifeCounterWidget lifeCounterWidget = new LifeCounterWidget();
+        lifeCounterWidget.onUpdate(this);    }
+
     private void updateLifePoints(){
         textView.setText(String.valueOf(lifePoints.getLp()));
         progressBar.setProgress(lifePoints.getLp());
