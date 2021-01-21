@@ -23,4 +23,7 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("ch.helsana.lifecounter", appContext.getPackageName());
     }
+
+    @Test
+    public void
 }

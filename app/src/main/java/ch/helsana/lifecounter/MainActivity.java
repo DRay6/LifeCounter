@@ -15,7 +15,7 @@ import ch.helsana.lifecounter.Model.LifePoints;
 
 public class MainActivity extends AppCompatActivity {
     
-    private static final int NOTIFICATION_TIMER = 60000;
+    private static final int NOTIFICATION_TIMER = 15552000;
 
     Button btnPlus100;
     Button btnPlus500;
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NotificationSender.class);
         PendingIntent pending = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), NOTIFICATION_TIMER, pending);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+NOTIFICATION_TIMER, NOTIFICATION_TIMER , pending);
     }
 
 }
