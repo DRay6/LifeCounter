@@ -2065,7 +2065,7 @@ ul.icons {
   background-color: #ce1b28;
   color: rgba(255, 255, 255, 0.75);
   background-attachment: fixed;
-  background-image: linear-gradient(rgba(206, 27, 40, 0.25), rgba(206, 27, 40, 0.25)), url(../../images/cta01.jpg);
+  background-image:  url(../../images/Screenshot_Activity_veritcal.png);
   background-position: bottom;
   background-repeat: no-repeat;
   background-size: cover;
