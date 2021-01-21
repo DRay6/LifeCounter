@@ -14,6 +14,8 @@ import android.widget.TextView;
 import ch.helsana.lifecounter.Model.LifePoints;
 
 public class MainActivity extends AppCompatActivity {
+    
+    private static final int NOTIFICATION_TIMER = 60000;
 
     Button btnPlus100;
     Button btnPlus500;
@@ -89,17 +91,7 @@ public class MainActivity extends AppCompatActivity {
             updateLifePoints();
         });
 
-        Context context = MainActivity.this;
-
-        Intent notificationIntent = new Intent(context, NotificationSender.class);
-        PendingIntent contentIntent = PendingIntent.getService(context, 0, notificationIntent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
-        System.out.println("LOG");
-
-        AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        am.cancel(contentIntent);
-        am.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()
-                + AlarmManager.INTERVAL_FIFTEEN_MINUTES, AlarmManager.INTERVAL_FIFTEEN_MINUTES, contentIntent);
+        triggerService();
 
 
     }
@@ -107,6 +99,13 @@ public class MainActivity extends AppCompatActivity {
     private void updateLifePoints(){
         textView.setText(String.valueOf(lifePoints.getLp()));
         progressBar.setProgress(lifePoints.getLp());
-
     }
+
+    public void triggerService() {
+        Intent intent = new Intent(this, NotificationSender.class);
+        PendingIntent pending = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), NOTIFICATION_TIMER, pending);
+    }
+
 }

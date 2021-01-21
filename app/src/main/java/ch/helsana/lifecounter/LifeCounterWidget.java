@@ -50,7 +50,6 @@ public class LifeCounterWidget extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
         lifePoints = LifePoints.getSingletonInstance();
-        System.out.println("LOG");
 
         for (int appWidgetId : appWidgetIds) {
 
@@ -86,6 +85,7 @@ public class LifeCounterWidget extends AppWidgetProvider {
             LifeCounterWidgetConfigureActivity.deleteTitlePref(context, appWidgetId);
         }
     }
+
 
 
     @Override
