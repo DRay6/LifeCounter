@@ -24,16 +24,14 @@ public class LifeCounterWidget extends AppWidgetProvider {
     private static final String OnClickMinus100 = "onClickMinus100";
     private static final String OnClickMinus500 = "onClickMinus500";
     private static final String OnClickMinus1000 = "onClickMinus1000";
+    private static final String OnClickReset = "onClickReset";
 
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId) {
-        //CharSequence widgetText = LifeCounterWidgetConfigureActivity.loadTitlePref(context, appWidgetId);
+    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
 
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.life_counter_widget);
         views.setTextViewText(R.id.lifepoints_text, String.valueOf(LifePoints.getSingletonInstance().getLp()));
-
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -69,13 +67,14 @@ public class LifeCounterWidget extends AppWidgetProvider {
                     getPendingSelfIntent(context, OnClickMinus500, appWidgetId));
             views.setOnClickPendingIntent(R.id.btMin1000,
                     getPendingSelfIntent(context, OnClickMinus1000, appWidgetId));
+            views.setOnClickPendingIntent(R.id.btReset,
+                    getPendingSelfIntent(context, OnClickReset, appWidgetId));
 
             views.setTextViewText(R.id.lifepoints_text, String.valueOf(lifePoints.getLp()));
             views.setProgressBar(R.id.progressBar,8000,lifePoints.getLp(),false);
 
             appWidgetManager.updateAppWidget(appWidgetId, views);
             //updateAppWidget(context, appWidgetManager, appWidgetId);
-
 
         }
     }
@@ -88,16 +87,6 @@ public class LifeCounterWidget extends AppWidgetProvider {
         }
     }
 
-    @Override
-    public void onEnabled(Context context) {
-        // Enter relevant functionality for when the first widget is created
-        lifePoints = LifePoints.getSingletonInstance();
-    }
-
-    @Override
-    public void onDisabled(Context context) {
-        // Enter relevant functionality for when the last widget is disabled
-    }
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -126,14 +115,14 @@ public class LifeCounterWidget extends AppWidgetProvider {
             case OnClickMinus1000:
                 lifePoints.modifyLifePoints(-1000);
                 break;
+            case OnClickReset:
+                lifePoints.resetLifePoints();
+                break;
         }
 
         onUpdate(context);
 
-
     }
-
-    ;
 
     protected PendingIntent getPendingSelfIntent(Context context, String action, int widgetId) {
         Intent intent = new Intent(context, getClass());
